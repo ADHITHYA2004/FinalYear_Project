@@ -1,0 +1,84 @@
+/* Container Styling */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
+  }
+  
+  /* Card Styling */
+  .card {
+    background-color: #ffffff;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Title and Subtitle */
+  .title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #4a90e2;
+    margin-bottom: 16px;
+  }
+  
+  .subtitle {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 16px;
+  }
+  
+  /* Radio Group Styling */
+  .radioGroup {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 24px;
+  }
+  
+  /* Input Field */
+  .inputContainer {
+    margin-bottom: 16px;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-top: 8px;
+  }
+  
+  /* Button Styling */
+  .button {
+    background: linear-gradient(90deg, #ff758c, #ff7eb3);
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(255, 117, 140, 0.4);
+  }
+  
+  .button:active {
+    transform: scale(0.95);
+  }
+  
+  /* Error Message */
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  
