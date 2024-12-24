@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    padding: 20px;
     background: linear-gradient(135deg, #a8edea, #fed6e3); /* Soft teal and pink gradient */
   }
   
@@ -15,8 +16,10 @@
     padding: 32px;
     max-width: 600px;
     width: 100%;
+    padding: 30px;
     animation: fadeIn 1s ease-in-out;
     border: 2px solid #f6f7f8; /* Light border for emphasis */
+    text-align: center;
   }
   
   /* Title Styling */

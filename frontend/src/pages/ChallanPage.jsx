@@ -4,7 +4,7 @@ import styles from './ChallanPage.module.css';
 
 const ChallanPage = () => {
   const location = useLocation();
-  const { user, total } = location.state || {};
+  const { user, total, denominations } = location.state || {}; // Get denominations from state
 
   const handlePrint = () => {
     window.print();
@@ -19,6 +19,15 @@ const ChallanPage = () => {
           <p><strong>Account Number:</strong> {user?.accountNumber || 'Unknown'}</p>
           <p><strong>IFSC Code:</strong> {user?.ifscCode || 'Unknown'}</p>
           <p><strong>Transaction Amount:</strong> ₹{total || '0'}</p>
+          <h2>Denomination Breakdown:</h2>
+          {denominations &&
+            Object.entries(denominations).map(([denomination, count]) => (
+              count > 0 && (
+                <p key={denomination}>
+                  <strong>₹{denomination}:</strong> {count} {count > 1 ? 'notes' : 'note'}
+                </p>
+              )
+            ))}
         </div>
         <button onClick={handlePrint} className={styles.printButton}>Print Challan</button>
       </div>

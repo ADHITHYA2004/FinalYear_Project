@@ -1,0 +1,95 @@
+/* Container styling */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e8f0fe, #f6e9ff); /* Subtle gradient */
+    padding: 20px;
+  }
+  
+  /* Title styling */
+  .title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* User details */
+  .userDetails {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .userDetails p {
+    font-size: 16px;
+    margin: 8px 0;
+    color: #555;
+  }
+  
+  /* Denominations container */
+  .denominations {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .denominationRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .denominationRow label {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  /* Total amount styling */
+  .total {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Next button */
+  .nextButton {
+    background: linear-gradient(135deg, #667eea, #764ba2); /* Gradient background */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 150px;
+    text-align: center;
+  }
+  
+  .nextButton:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .nextButton:active {
+    transform: scale(0.95);
+    background: #5b86e5;
+  }
+  

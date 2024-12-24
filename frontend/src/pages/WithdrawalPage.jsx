@@ -1,45 +1,47 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'; // Import the translation hook
 import styles from './WithdrawalPage.module.css';
 
 const WithdrawalPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation(); // Initialize translation hook
   const user = location.state?.user || {};
   const [withdrawalAmount, setWithdrawalAmount] = useState('');
   const [error, setError] = useState('');
 
   const handleNext = () => {
     setError('');
-    const accountBalance = user?.accountBalance || 0;
+    const accountBalance = user?.accountBalance || 10000000;
 
     if (!withdrawalAmount || isNaN(withdrawalAmount)) {
-      setError('Please enter a valid amount.');
+      setError(t('enterValidAmount'));
       return;
     }
 
     if (withdrawalAmount > accountBalance) {
-      setError('Insufficient balance. Please enter a lower amount.');
+      setError(t('insufficientBalance'));
       return;
     }
 
-    navigate('/authentication', { state: { user, withdrawalAmount } });
+    navigate('/authentication', { state: { user, total: withdrawalAmount } });
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <h1 className={styles.title}>Withdrawal</h1>
+        <h1 className={styles.title}>{t('withdrawalPageTitle')}</h1>
         <p className={styles.subtitle}>
-          <strong>Account Holder:</strong> {user.name || 'Unknown'}
+          <strong>{t('accountHolder')}</strong> {user.name || t('unknown')}
         </p>
         <p className={styles.subtitle}>
-          <strong>Account Balance:</strong> ₹{user.accountBalance || '0'}
+          <strong>{t('accountBalance')}</strong> ₹{user.accountBalance || 10000000}
         </p>
 
         <div className={styles.inputContainer}>
           <label htmlFor="withdrawalAmount" className={styles.label}>
-            Enter Withdrawal Amount:
+            {t('enterWithdrawalAmount')}
           </label>
           <input
             type="number"
@@ -47,14 +49,14 @@ const WithdrawalPage = () => {
             className={styles.input}
             value={withdrawalAmount}
             onChange={(e) => setWithdrawalAmount(parseFloat(e.target.value))}
-            placeholder="Enter amount"
+            placeholder={t('enterWithdrawalAmount')}
           />
         </div>
 
         {error && <p className={styles.error}>{error}</p>}
 
         <button onClick={handleNext} className={styles.button}>
-          Next
+          {t('nextButton')}
         </button>
       </div>
     </div>

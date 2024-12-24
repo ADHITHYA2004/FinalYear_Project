@@ -1,10 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import styles from './HomePage.module.css';
 import OCRScanner from '../components/OCRScanner';
+import LanguageSelector from '../components/LanguageSelector';
 
 const HomePage = ({ onScanComplete }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleScanComplete = (data) => {
     onScanComplete(data);
@@ -13,17 +16,23 @@ const HomePage = ({ onScanComplete }) => {
 
   return (
     <div className={styles.container}>
-    <div className={styles.card}>
-      <h1 className={styles.title}>OCR Scanner</h1>
-      <p className={styles.subtitle}>Keep your passbook ready for scanning.</p>
-      <OCRScanner onScanComplete={handleScanComplete} />
+      {/* Language Selector */}
       
+
+      <div className={styles.card}>
+      <LanguageSelector />
+        <h1 className={styles.title}>{t('welcome')}</h1>
+        <p className={styles.subtitle}>{t('preparePassbook')}</p>
+
+        {/* OCR Scanner */}
+        <OCRScanner onScanComplete={handleScanComplete} />
+      </div>
     </div>
-  </div>
   );
 };
 
 export default HomePage;
+
 // import React, { useState } from 'react';
 // import { Button } from '@shadcn/react/button';
 // import { Select, SelectItem } from '@shadcn/react/select';

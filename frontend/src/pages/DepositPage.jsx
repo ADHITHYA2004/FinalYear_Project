@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import styles from './DepositPage.module.css'; // Import the CSS module
 
 const DepositPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const user = location.state?.user || {};
+  const { t } = useTranslation();
 
   const [denominations, setDenominations] = useState({
     10: 0,
@@ -32,21 +35,27 @@ const DepositPage = () => {
 
   const handleNext = () => {
     const total = calculateTotal();
-    navigate('/authentication', { state: { user, total } });
+    navigate('/authentication', { state: { user, total, denominations } });
   };
 
   return (
-    <div>
-      <h1>Deposit Page</h1>
-      <p><strong>User:</strong> {user.name || 'Unknown'}</p>
-      <p><strong>Account Number:</strong> {user.accountNumber || 'Unknown'}</p>
+    <div className={styles.container}>
+      <h1 className={styles.title}>{t('depositPageTitle')}</h1>
+      <div className={styles.userDetails}>
+        <p>
+          <strong>{t('userLabel')}</strong> {user.name || t('unknown')}
+        </p>
+        <p>
+          <strong>{t('accountNumberLabel')}</strong> {user.accountNumber || t('unknown')}
+        </p>
+      </div>
 
-      <h2>Enter Currency Denominations</h2>
-      <div>
+      <div className={styles.denominations}>
+        <h2>{t('currencyDenominationHeader')}</h2>
         {Object.keys(denominations).map((denomination) => (
-          <div key={denomination}>
+          <div className={styles.denominationRow} key={denomination}>
             <label>
-              ₹{denomination}: 
+              ₹{denomination}:
               <input
                 type="number"
                 min="0"
@@ -58,8 +67,10 @@ const DepositPage = () => {
         ))}
       </div>
 
-      <h3>Total Amount: ₹{calculateTotal()}</h3>
-      <button onClick={handleNext}>Next</button>
+      <h3 className={styles.total}>{t('totalAmountLabel')} ₹{calculateTotal()}</h3>
+      <button className={styles.nextButton} onClick={handleNext}>
+        {t('nextButton')}
+      </button>
     </div>
   );
 };
