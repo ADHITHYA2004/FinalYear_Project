@@ -68,6 +68,8 @@ import UserManagement from './pages/UserManagement';
 import TransactionMonitor from './pages/TransactionMonitor';
 import LoginPage from './pages/LoginPage'; // Import LoginPage
 import ProtectedRoute from './components/ProtectedRoute';
+import TransactionHistoryPage from './pages/TransactionHistoryPage';
+
 
 function App() {
   const [ocrData, setOcrData] = useState(null);
@@ -110,7 +112,9 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/transaction-history" element={<TransactionHistoryPage />} />
       </Routes>
+      
     </Router>
   );
 }
