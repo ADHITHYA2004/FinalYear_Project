@@ -11,6 +11,7 @@
   
   .cardContainer {
     display: flex;
+    background-color: ;
     justify-content: center;
     gap: 20px;
   }
@@ -19,6 +20,7 @@
     background: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
+    background: linear-gradient(90deg, #5b86e5, #36d1dc);
     text-align: center;
     text-decoration: none;
     color: black;

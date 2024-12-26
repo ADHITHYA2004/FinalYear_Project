@@ -61,7 +61,7 @@ const UserDetailsPage = () => {
         <button className={styles.button} onClick={() => handleAction('withdrawal')}>
           {t('withdrawal')}
         </button>
-        <button
+        <button className={styles.button}
   onClick={() =>
     navigate('/transaction-history', { state: { accountNumber: user.accountNumber } })
   }

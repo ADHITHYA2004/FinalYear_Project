@@ -3,15 +3,16 @@ const router = express.Router();
 const pool = require('C:/Users/91994/Desktop/Challan_Project/backend/db.js'); // Replace with your PostgreSQL pool configuration
 
 // Get transactions for a specific account
-router.get('/api/transactions/:accountNumber', async (req, res) => {
+router.get('/transactions/:accountNumber', async (req, res) => {
+  console.log(`Fetching transactions for account: ${req.params.accountNumber}`);
   const { accountNumber } = req.params;
 
   try {
     const result = await pool.query(
       `SELECT id, type, amount, date, balance_after 
-       FROM transactions 
-       WHERE account_number = $1 
-       ORDER BY date DESC`,
+      FROM transactions 
+      WHERE account_number = $1 
+      ORDER BY date DESC`,
       [accountNumber]
     );
 

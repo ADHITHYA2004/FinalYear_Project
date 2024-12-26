@@ -8,25 +8,99 @@ const TransactionHistoryPage = () => {
   const [transactions, setTransactions] = useState([]);
   const [error, setError] = useState('');
 
+  // useEffect(() => {
+  //   const fetchTransactions = async () => {
+  //     try {
+        
+  //       const response = await fetch(`/api/transactions/${accountNumber}`);
+  //       const data = await response.json();
+  //       setTransactions(data);
+  //     } catch (err) {
+  //       setError('Failed to load transactions');
+  //     }
+  //   };
+
+  //   if (accountNumber) fetchTransactions();
+  // }, [accountNumber]);
+
+  // if (!accountNumber) {
+  //   return <div>Error: Account number not provided</div>;
+  // }
+
+  // useEffect(() => {
+  //   const fetchTransactions = async () => {
+  //     try {
+  //       console.log(`Fetching transactions for accountNumber: ${accountNumber}`);
+  //       const response = await fetch(`/api/transactions/${accountNumber}`);
+  //       if (!response.ok) {
+  //         console.error('Fetch failed with status:', response.status);
+  //         throw new Error('Failed to fetch transactions');
+  //       }
+  //       const data = await response.json();
+  //       console.log('Fetched transactions:', data);
+  //       setTransactions(data);
+  //     } catch (err) {
+  //       console.error('Error loading transactions:', err.message);
+  //       setError('Failed to load transactions');
+  //     }
+  //   };
+
+  //   if (accountNumber) fetchTransactions();
+  // }, [accountNumber]);
+  
+
+  // useEffect(() => {
+  //   const fetchTransactions = async () => {
+  //     try {
+  //       console.log(`Fetching transactions for accountNumber: ${accountNumber}`);
+  //       const response = await fetch(`http://localhost:5000/api/transactions/${accountNumber}`);
+  //       console.log('Response status:', response.status);
+  
+  //       if (!response.ok) {
+  //         console.error('Fetch failed with status:', response.status);
+  //         throw new Error('Failed to fetch transactions');
+  //       }
+  
+  //       const data = await response.json();
+  //       console.log('Fetched transactions:', data);
+  //       setTransactions(data);
+  //     } catch (err) {
+  //       console.error('Error loading transactions:', err.message);
+  //       setError('Failed to load transactions');
+  //     }
+  //   };
+  
+  //   if (accountNumber) fetchTransactions();
+  // }, [accountNumber]);
+  
+
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await fetch(`/api/transactions/${accountNumber}`);
-        const data = await response.json();
+        // console.log(`Fetching transactions for accountNumber: ${accountNumber}`);
+        const response = await fetch(`http://localhost:5000/api/transactions/${accountNumber}`);
+        // console.log('Raw response:', response);
+  
+        const responseText = await response.text();
+        // console.log('Raw response text:', responseText);
+  
+        if (!response.ok) {
+          console.error('Fetch failed with status:', response.status);
+          throw new Error('Failed to fetch transactions');
+        }
+  
+        const data = JSON.parse(responseText);
+        console.log('Fetched transactions:', data);
         setTransactions(data);
       } catch (err) {
+        console.error('Error loading transactions:', err.message);
         setError('Failed to load transactions');
       }
     };
-
+  
     if (accountNumber) fetchTransactions();
   }, [accountNumber]);
-
-  if (!accountNumber) {
-    return <div>Error: Account number not provided</div>;
-  }
   
-
 
   return (
     <div className={styles.container}>
