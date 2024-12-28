@@ -8,6 +8,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
 app.use('/api',transactionsRoute);
 app.use(authRoute);
 // Register OCR routes

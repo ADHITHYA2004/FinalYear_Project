@@ -35,6 +35,65 @@
 // };
 
 // export default TransactionMonitor;
+
+// import React, { useEffect, useState } from 'react';
+// import axios from '../api/axios';
+// import styles from './TransactionMonitor.module.css';
+
+// const TransactionMonitor = () => {
+//   const [transactions, setTransactions] = useState([]);
+//   const [loading, setLoading] = useState(true);
+
+//   useEffect(() => {
+//     fetchTransactions();
+//   }, []);
+
+//   const fetchTransactions = async () => {
+//     try {
+//       const response = await axios.get('/transactions');
+//       setTransactions(response.data);
+//     } catch (error) {
+//       console.error('Error fetching transactions:', error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   if (loading) {
+//     return <p>Loading transactions...</p>;
+//   }
+
+//   return (
+//     <div className={styles.container}>
+//       <h1 className={styles.title}>Transaction Monitor</h1>
+//       <table className={styles.table}>
+//         <thead>
+//           <tr>
+//             <th>User Name</th>
+//             <th>Account Number</th>
+//             <th>Amount</th>
+//             <th>Type</th>
+//             <th>Date</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {transactions.map((txn) => (
+//             <tr key={transaction.id}>
+//               <td>{transaction.user_name}</td>
+//               <td>{transaction.account_number}</td>
+//               <td>₹{transaction.amount}</td>
+//               <td>{transaction.type}</td>
+//               <td>{new Date(transaction.date).toLocaleString()}</td>
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// };
+
+// export default TransactionMonitor;
+
 import React, { useEffect, useState } from 'react';
 import axios from '../api/axios';
 import styles from './TransactionMonitor.module.css';
@@ -49,7 +108,9 @@ const TransactionMonitor = () => {
 
   const fetchTransactions = async () => {
     try {
+      console.log('Fetching transactions...');
       const response = await axios.get('/transactions');
+      console.log('Fetched transactions:', response.data);
       setTransactions(response.data);
     } catch (error) {
       console.error('Error fetching transactions:', error);
@@ -75,12 +136,12 @@ const TransactionMonitor = () => {
           </tr>
         </thead>
         <tbody>
-          {transactions.map((txn) => (
-            <tr key={txn.id}>
-              <td>{txn.user}</td>
-              <td>₹{txn.amount}</td>
-              <td>{txn.type}</td>
-              <td>{txn.date}</td>
+          {transactions.map((transaction) => (
+            <tr key={transaction.id}>
+              <td>{transaction.user}</td>
+              <td>₹{transaction.amount}</td>
+              <td>{transaction.type}</td>
+              <td>{transaction.date}</td>
             </tr>
           ))}
         </tbody>

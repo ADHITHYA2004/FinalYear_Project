@@ -23,4 +23,31 @@ router.get('/transactions/:accountNumber', async (req, res) => {
   }
 });
 
+// Get all transactions
+router.get('/transactions', async (req, res) => {
+  console.log('Endpoint /transactions hit'); 
+  try {
+    const result = await pool.query(
+      // `SELECT 
+      //   transactions.id,
+      //   transactions.type,
+      //   transactions.amount,
+      //   transactions.date,
+      //   transactions.account_number,
+      //   users.name AS user_name
+      //   FROM transactions
+      //   JOIN users ON transactions.account_number = users.account_number
+      //   ORDER BY date DESC`
+      `SELECT id, account_number AS user, amount, type, date 
+      FROM transactions 
+      ORDER BY date DESC`
+    );
+    console.log('Transactions fetched:', result.rows);
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Error fetching all transactions:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 module.exports = router;

@@ -11,7 +11,7 @@
   
   .cardContainer {
     display: flex;
-    background-color: ;
+    /* background-color: ; */
     justify-content: center;
     gap: 20px;
   }
