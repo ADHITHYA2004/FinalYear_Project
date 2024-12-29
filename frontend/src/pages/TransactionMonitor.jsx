@@ -26,7 +26,7 @@ const TransactionMonitor = () => {
   if (loading) {
     return <p>Loading transactions...</p>;
   }
-
+  
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Transaction Monitor</h1>

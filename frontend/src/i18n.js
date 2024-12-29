@@ -26,7 +26,7 @@ const resources = {
       withdrawal: 'Withdrawal',
 
       withdrawalPageTitle: 'Withdrawal',
-      accountHolder: 'Account Holder:',
+      accountHolder: 'Name:',
       accountBalance: 'Account Balance:',
       enterWithdrawalAmount: 'Enter Withdrawal Amount:',
       enterValidAmount: 'Please enter a valid amount.',
@@ -36,7 +36,7 @@ const resources = {
       zeroBalance: '0',
 
       authenticationPageTitle: 'Authentication Page',
-      userLabel: 'User:',
+      userLabel: 'Name:',
       accountNumberLabel: 'Account Number:',
       totalAmountLabel: 'Total Amount:',
       selectAuthMethod: 'Select Authentication Method',

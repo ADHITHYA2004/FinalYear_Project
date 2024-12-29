@@ -36,6 +36,9 @@ const WithdrawalPage = () => {
           <strong>{t('accountHolder')}</strong> {user.name || t('unknown')}
         </p>
         <p className={styles.subtitle}>
+          <strong> {t('accountNumberLabel')}</strong> {user?.account_number || t('unknown')}
+        </p>
+        <p className={styles.subtitle}>
           <strong>{t('accountBalance')}</strong> ₹{user.accountBalance || 10000000}
         </p>
 

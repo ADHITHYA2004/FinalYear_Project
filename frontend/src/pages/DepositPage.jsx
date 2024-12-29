@@ -8,6 +8,7 @@ const DepositPage = () => {
   const location = useLocation();
   const user = location.state?.user || {};
   const { t } = useTranslation();
+  
 
   const [denominations, setDenominations] = useState({
     10: 0,
@@ -46,7 +47,7 @@ const DepositPage = () => {
           <strong>{t('userLabel')}</strong> {user.name || t('unknown')}
         </p>
         <p>
-          <strong>{t('accountNumberLabel')}</strong> {user.accountNumber || t('unknown')}
+          <strong>{t('accountNumberLabel')}</strong> {user.account_number || t('unknown')}
         </p>
       </div>
 

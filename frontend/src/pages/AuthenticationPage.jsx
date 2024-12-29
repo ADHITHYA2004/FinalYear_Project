@@ -42,7 +42,7 @@ const AuthenticationPage = () => {
           {t('userLabel')} {user?.name || t('unknown')}
         </p>
         <p className={styles.subtitle}>
-          {t('accountNumberLabel')} {user?.accountNumber || t('unknown')}
+          {t('accountNumberLabel')} {user?.account_number || t('unknown')}
         </p>
         <p className={styles.subtitle}>
           {t('totalAmountLabel')} ₹{total || 0}
