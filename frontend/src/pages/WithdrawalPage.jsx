@@ -7,13 +7,14 @@ const WithdrawalPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation(); // Initialize translation hook
-  const user = location.state?.user || {};
+
+  const user = location.state?.user || {}; // Extract user from state
   const [withdrawalAmount, setWithdrawalAmount] = useState('');
   const [error, setError] = useState('');
 
   const handleNext = () => {
     setError('');
-    const accountBalance = user?.accountBalance || 10000000;
+    const accountBalance = user?.balance; // Fetch balance from user object
 
     if (!withdrawalAmount || isNaN(withdrawalAmount)) {
       setError(t('enterValidAmount'));
@@ -33,13 +34,13 @@ const WithdrawalPage = () => {
       <div className={styles.card}>
         <h1 className={styles.title}>{t('withdrawalPageTitle')}</h1>
         <p className={styles.subtitle}>
-          <strong>{t('accountHolder')}</strong> {user.name || t('unknown')}
+          <strong>{t('accountHolder')}</strong> {user?.name || t('unknown')}
         </p>
         <p className={styles.subtitle}>
-          <strong> {t('accountNumberLabel')}</strong> {user?.account_number || t('unknown')}
+          <strong>{t('accountNumberLabel')}</strong> {user?.account_number || t('unknown')}
         </p>
         <p className={styles.subtitle}>
-          <strong>{t('accountBalance')}</strong> ₹{user.accountBalance || 10000000}
+          <strong>{t('accountBalance')}</strong> ₹{user?.balance?.toFixed(2) || t('unknown')}
         </p>
 
         <div className={styles.inputContainer}>

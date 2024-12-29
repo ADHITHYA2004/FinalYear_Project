@@ -45,7 +45,12 @@ const UserDetailsPage = () => {
   }, [accountNumber, t]);
 
   const handleAction = (action) => {
-    navigate(`/${action}`, { state: { user } });
+    // navigate(`/${action}`, { state: { user } });
+    if (action === 'withdrawal') {
+      navigate('/withdrawal', { state: { user } });
+    } else if (action === 'deposit') {
+      navigate('/deposit', { state: { user } });
+    }
   };
 
   if (error) {
