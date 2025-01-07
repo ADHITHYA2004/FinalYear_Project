@@ -7,7 +7,7 @@ const AuthenticationPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation(); // Initialize translation hook
-  const { user, total, denominations } = location.state || {}; // Get denominations from state
+  const { user, total, denominations, type } = location.state || {}; // Get denominations and type from state
 
   const [method, setMethod] = useState('');
   const [inputValue, setInputValue] = useState('');
@@ -17,18 +17,18 @@ const AuthenticationPage = () => {
     setError('');
     if (method === 'PIN') {
       if (inputValue === '1234') {
-        navigate('/challan', { state: { user, total, denominations } }); // Pass denominations
+        navigate('/challan', { state: { user, total, denominations, type } }); // Pass type
       } else {
         setError(t('invalidPin'));
       }
     } else if (method === 'OTP') {
       if (inputValue === '567890') {
-        navigate('/challan', { state: { user, total, denominations } }); // Pass denominations
+        navigate('/challan', { state: { user, total, denominations, type } }); // Pass type
       } else {
         setError(t('invalidOtp'));
       }
     } else if (method === 'Biometric') {
-      navigate('/challan', { state: { user, total, denominations } }); // Pass denominations
+      navigate('/challan', { state: { user, total, denominations, type } }); // Pass type
     } else {
       setError(t('selectMethodError'));
     }
@@ -38,6 +38,9 @@ const AuthenticationPage = () => {
     <div className={styles.container}>
       <div className={styles.card}>
         <h1 className={styles.title}>{t('authenticationPageTitle')}</h1>
+        <p className={styles.subtitle}>
+          {t('transactionType')} {type === 'deposit' ? t('deposit') : t('withdrawal')}
+        </p>
         <p className={styles.subtitle}>
           {t('userLabel')} {user?.name || t('unknown')}
         </p>

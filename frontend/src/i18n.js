@@ -37,6 +37,7 @@ const resources = {
 
       authenticationPageTitle: 'Authentication Page',
       userLabel: 'Name:',
+      transactionType:'Transaction Type:',
       accountNumberLabel: 'Account Number:',
       totalAmountLabel: 'Total Amount:',
       selectAuthMethod: 'Select Authentication Method',
@@ -86,6 +87,7 @@ const resources = {
 
       authenticationPageTitle: 'அங்கீகார பக்கம்',
       userLabel: 'பயனர்:',
+      transactionType: 'பரிவர்த்தனை வகை:',
       accountNumberLabel: 'கணக்கு எண்:',
       totalAmountLabel: 'மொத்த தொகை:',
       selectAuthMethod: 'அங்கீகார முறையைத் தேர்ந்தெடுக்கவும்',
@@ -134,6 +136,7 @@ const resources = {
       zeroBalance: '0',
 
       authenticationPageTitle: 'प्रमाणीकरण पृष्ठ',
+      transactionType: 'लेन-देन प्रकार:',
       userLabel: 'उपयोगकर्ता:',
       accountNumberLabel: 'खाता संख्या:',
       totalAmountLabel: 'कुल राशि:',

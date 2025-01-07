@@ -36,7 +36,7 @@ const DepositPage = () => {
 
   const handleNext = () => {
     const total = calculateTotal();
-    navigate('/authentication', { state: { user, total, denominations } });
+    navigate('/authentication', { state: { user, total, denominations, type: 'deposit' } });
   };
 
   return (

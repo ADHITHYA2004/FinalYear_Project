@@ -26,7 +26,7 @@ const WithdrawalPage = () => {
       return;
     }
 
-    navigate('/authentication', { state: { user, total: withdrawalAmount } });
+    navigate('/authentication', { state: { user, total: withdrawalAmount, type: 'withdrawal' } });
   };
 
   return (
