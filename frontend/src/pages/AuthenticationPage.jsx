@@ -13,26 +13,85 @@ const AuthenticationPage = () => {
   const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState('');
 
-  const handleAuthentication = () => {
+  // const handleAuthentication = () => {
+  //   setError('');
+  //   if (method === 'PIN') {
+  //     if (inputValue === '1234') {
+  //       navigate('/challan', { state: { user, total, denominations, type } }); // Pass type
+  //     } else {
+  //       setError(t('invalidPin'));
+  //     }
+  //   } else if (method === 'OTP') {
+  //     if (inputValue === '567890') {
+  //       navigate('/challan', { state: { user, total, denominations, type } }); // Pass type
+  //     } else {
+  //       setError(t('invalidOtp'));
+  //     }
+  //   } else if (method === 'Biometric') {
+  //     navigate('/challan', { state: { user, total, denominations, type } }); // Pass type
+  //   } else {
+  //     setError(t('selectMethodError'));
+  //   }
+  // };
+  const handleAuthentication = async () => {
     setError('');
     if (method === 'PIN') {
       if (inputValue === '1234') {
-        navigate('/challan', { state: { user, total, denominations, type } }); // Pass type
+        try {
+          // Process transaction in the backend
+          await fetch('/api/process-transaction', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              accountNumber: user.account_number,
+              type,
+              amount: total,
+            }),
+          });
+  
+          // Navigate to challan page
+          navigate('/challan', { state: { user, total, denominations, type } });
+        } catch (err) {
+          console.error('Transaction processing failed:', err.message);
+          setError(t('transactionFailed'));
+        }
       } else {
         setError(t('invalidPin'));
       }
     } else if (method === 'OTP') {
       if (inputValue === '567890') {
-        navigate('/challan', { state: { user, total, denominations, type } }); // Pass type
+        // Process transaction in the backend
+        await fetch('/api/process-transaction', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            accountNumber: user.account_number,
+            type,
+            amount: total,
+          }),
+        });
+  
+        navigate('/challan', { state: { user, total, denominations, type } });
       } else {
         setError(t('invalidOtp'));
       }
     } else if (method === 'Biometric') {
-      navigate('/challan', { state: { user, total, denominations, type } }); // Pass type
+      await fetch('/api/process-transaction', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          accountNumber: user.account_number,
+          type,
+          amount: total,
+        }),
+      });
+  
+      navigate('/challan', { state: { user, total, denominations, type } });
     } else {
       setError(t('selectMethodError'));
     }
   };
+  
 
   return (
     <div className={styles.container}>
