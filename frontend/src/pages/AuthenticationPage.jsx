@@ -13,26 +13,6 @@ const AuthenticationPage = () => {
   const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState('');
 
-  // const handleAuthentication = () => {
-  //   setError('');
-  //   if (method === 'PIN') {
-  //     if (inputValue === '1234') {
-  //       navigate('/challan', { state: { user, total, denominations, type } }); // Pass type
-  //     } else {
-  //       setError(t('invalidPin'));
-  //     }
-  //   } else if (method === 'OTP') {
-  //     if (inputValue === '567890') {
-  //       navigate('/challan', { state: { user, total, denominations, type } }); // Pass type
-  //     } else {
-  //       setError(t('invalidOtp'));
-  //     }
-  //   } else if (method === 'Biometric') {
-  //     navigate('/challan', { state: { user, total, denominations, type } }); // Pass type
-  //   } else {
-  //     setError(t('selectMethodError'));
-  //   }
-  // };
   const handleAuthentication = async () => {
     setError('');
     if (method === 'PIN') {

@@ -1,10 +1,10 @@
-// 
+
 
 const express = require('express');
 const router = express.Router();
-const pool = require('../db'); // Database connection
+const pool = require('C:/Users/91994/Desktop/Challan_Project/backend/db.js');
 
-// ✅ Fetch all users
+//  Fetch all users
 router.get('/users', async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM userdetails ORDER BY account_number ASC');
@@ -15,7 +15,7 @@ router.get('/users', async (req, res) => {
     }
 });
 
-// ✅ Fetch a single user by account number (Already exists)
+//  Fetch a single user by account number (Already exists)
 router.get('/user-details/:accountNumber', async (req, res) => {
     const { accountNumber } = req.params;
     try {
@@ -37,7 +37,7 @@ router.get('/user-details/:accountNumber', async (req, res) => {
     }
 });
 
-// ✅ Create a new user
+//  Create a new user
 router.post('/users', async (req, res) => {
     const { account_holder_name, account_number, ifsc, phone_no, customer_address, pin, balance, account_opening_date, branch } = req.body;
 
@@ -60,13 +60,21 @@ router.post('/users', async (req, res) => {
 
 
 router.put('/users/:accountNumber', async (req, res) => {
-    const { name, ifsc, phoneNo, address, pin, balance } = req.body;
+    const { name, ifsc, phoneNo, address, pin, balance, accountOpeningDate, branch } = req.body;
     const { accountNumber } = req.params;
+
+    console.log("🔵 Received UPDATE request:", { accountNumber, name, ifsc, phoneNo, address, pin, balance, accountOpeningDate, branch });
+
     try {
         const result = await pool.query(
-            'UPDATE userdetails SET account_holder_name = $1, ifsc = $2, phone_no = $3, customer_address = $4, pin = $5, balance = $6 WHERE account_number = $7 RETURNING *',
-            [name, ifsc, phoneNo, address, pin, balance, accountNumber]
+            `UPDATE userdetails 
+            SET account_holder_name = $1, ifsc = $2, phone_no = $3, customer_address = $4, pin = $5, balance = $6, account_opening_date = $7, branch = $8 
+            WHERE account_number = $9 
+             RETURNING *`,
+            [name, ifsc, phoneNo, address, pin, balance, accountOpeningDate, branch, accountNumber]
         );
+
+        console.log("🟢 Database Update Result:", result.rows);
 
         if (result.rows.length === 0) {
             return res.status(404).json({ error: 'User not found' });
@@ -74,10 +82,13 @@ router.put('/users/:accountNumber', async (req, res) => {
 
         res.json({ message: 'User updated successfully', user: result.rows[0] });
     } catch (error) {
-        console.error('Error updating user:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        console.error('🔴 Error updating user:', error);
+        res.status(500).json({ error: 'Internal Server Error', details: error.message });
     }
 });
+
+
+
 
 router.delete('/users/:accountNumber', async (req, res) => {
     const { accountNumber } = req.params;
